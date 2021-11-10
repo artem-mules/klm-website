@@ -809,6 +809,6 @@ a.hand-string__p:hover, a:focus {
   }
 }
 
-.steps-wrapper, .step-form__bottom-space {
-  pointer-events: none;
+.steps-wrapper, .step-form__bottom-space, .buttons--disable {
+  pointer-events: none !important;
 }
