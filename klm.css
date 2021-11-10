@@ -808,3 +808,7 @@ a.hand-string__p:hover, a:focus {
     padding-left: 40px !important;
   }
 }
+
+.steps-wrapper, .step-form__bottom-space {
+  pointer-events: none;
+}
