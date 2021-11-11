@@ -812,3 +812,11 @@ a.hand-string__p:hover, a:focus {
 .steps-wrapper, .step-form__bottom-space, .buttons--disable {
   pointer-events: none !important;
 }
+
+.step-button {
+  pointer-events: none;
+}
+
+.step-button.step-button--active {
+  pointer-events: all !important;
+}
