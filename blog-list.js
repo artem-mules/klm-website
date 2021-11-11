@@ -164,9 +164,9 @@ function testFun() {
     if (pagStatus < 1) {
         // console.log('lets start ***finSweet');
 
-        Weglot.initialize({
-            api_key: 'wg_a06f3a7b6acb04572ef530639d3aa00a6'
-        });
+        // Weglot.initialize({
+        //     api_key: 'wg_a06f3a7b6acb04572ef530639d3aa00a6'
+        // });
         setTimeout(doFilterButtons, 1050);
         setTimeout(startFinsweetFilter, 1100);
         setTimeout(listenToSwitcher, 1150);
@@ -193,9 +193,9 @@ observer.observe(targetNode, observerOptions);
 //______________________________________________________________________________
 
 //After changing the language - check if the change was triggered by a user or automatically, if a user - reload the page
-Weglot.on("languageChanged", function () {
-    if (userChangeLangByClick == true) {
-        document.location.reload();
-    }
-    userChangeLangByClick = false;
-})
+// Weglot.on("languageChanged", function () {
+//     if (userChangeLangByClick == true) {
+//         document.location.reload();
+//     }
+//     userChangeLangByClick = false;
+// })
