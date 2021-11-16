@@ -820,3 +820,10 @@ a.hand-string__p:hover, a:focus {
 .step-button.step-button--active {
   pointer-events: all !important;
 }
+
+
+.section--menu {
+  background: rgba(28, 28, 28, 0.9);
+    -webkit-backdrop-filter: saturate(180%) blur(60px);
+    backdrop-filter: saturate(180%) blur(60px);
+}
