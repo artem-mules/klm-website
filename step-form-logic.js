@@ -1,5 +1,6 @@
 let allStepButtons = document.querySelectorAll('.buttons--step');
 let manualButton = document.querySelector('#manual-input-button');
+let expectationsInput = document.querySelector('[expectations]');
 let currentStepType;
 let errorsCounter;
 let activeStep;
@@ -75,4 +76,15 @@ allStepButtons.forEach(stepButton => {
 
 manualButton.addEventListener('click', function() {
     startManual();
+});
+
+expectationsInput.addEventListener('input', function() {
+    currentSkipButton = expectationsInput.nextElementSibling.querySelector('.buttons');
+    if (expectationsInput.value != '') {
+        currentSkipButton.classList.remove('buttons--skip-style');
+        currentSkipButton.textContent = 'Next';
+    } else {
+        currentSkipButton.classList.add('buttons--skip-style');
+        currentSkipButton.textContent = 'Skip';
+    }
 });
