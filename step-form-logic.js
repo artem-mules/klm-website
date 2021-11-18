@@ -126,9 +126,6 @@ function checkStepsNav() {
                     while (allStepNav[stepIteratorPlus].nextElementSibling != null) {
                         allStepNav[stepIteratorPlus + 1].classList.remove('step-button--active');
                         stepIteratorPlus = stepIteratorPlus + 1;
-                        console.log('удалили класс у кругляша');
-                        console.log(allStepNav[stepIteratorPlus]);
-                        console.log(stepIteratorPlus);
                     }
                 }
             });
