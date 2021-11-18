@@ -827,3 +827,7 @@ a.hand-string__p:hover, a:focus {
     -webkit-backdrop-filter: saturate(180%) blur(60px);
     backdrop-filter: saturate(180%) blur(60px);
 }
+
+.hide {
+  display: none !important;
+}

@@ -1,3 +1,4 @@
+let form = document.querySelector('.form-block__form');
 let popUp = document.querySelector('.steps-form-popup');
 let allStepButtons = document.querySelectorAll('.buttons--step');
 let manualButton = document.querySelector('#manual-input-button');
@@ -151,6 +152,10 @@ popUp.addEventListener('click', function() {
     setTimeout(checkStepsNav, 200);
 });
 
+form.addEventListener('submit', function() {
+    appendWrapperStepButtons.classList.add('hide');
+})
+
 // const targetNodePopUp = popUp;
 // const observerOptionsPopUp = {
 //     childList: true,
@@ -159,3 +164,6 @@ popUp.addEventListener('click', function() {
 // }
 // const observerPopUp = new MutationObserver(checkStepsNav);
 // observerPopUp.observe(targetNodePopUp, observerOptionsPopUp);
+
+//когда форма отправлена — прятать навигацию
+//когда пользователь выходит из 3-го шага — делать все mustReq поля необязательными. + видимым делать subStep с кнопками
