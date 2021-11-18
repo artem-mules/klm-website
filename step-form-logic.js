@@ -144,6 +144,18 @@ allStepNav.forEach((stepNav, stepNavId) => {
                 step.classList.add('step--active');
             }
         });
+
+        if (stepNavId == 0 || stepNavId == 1 || stepNavId == 3) {
+            let allShouldBeRequired = document.querySelectorAll('[should-be-required]');
+            allShouldBeRequired.forEach(input => {
+                input.removeAttribute('required');
+            });
+            let allSubSteps = document.querySelectorAll('.substep');
+            allSubSteps.forEach(subStep => {
+                subStep.classList.remove('substep--active');
+            });
+            allSubSteps[0].classList.add('substep--active');
+        }
     });
 });
 
@@ -165,5 +177,4 @@ form.addEventListener('submit', function() {
 // const observerPopUp = new MutationObserver(checkStepsNav);
 // observerPopUp.observe(targetNodePopUp, observerOptionsPopUp);
 
-//когда форма отправлена — прятать навигацию
 //когда пользователь выходит из 3-го шага — делать все mustReq поля необязательными. + видимым делать subStep с кнопками
