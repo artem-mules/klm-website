@@ -1,41 +1,24 @@
-let activeStep;
-let nextStep;
-let mainForm = document.querySelector('.form-block');
 let allStepButtons = document.querySelectorAll('.buttons--step');
-let allReqFields;
-let appendWrapperStepButtons = document.querySelector('.steps-wrapper');
-let allSteps = document.querySelectorAll('.step');
-
-//формируем кнопочки шагов
-allSteps.forEach(function(elem, index) {
-    let stepWindowIndex = (index+1);
-
-    let clonableStepButton = document.querySelector('.step-button').cloneNode(true);
-
-    if (index == 0) {
-        
-    } else {
-        clonableStepButton.classList.remove('step-button--active');
-        clonableStepButton.classList.remove('step-button--current');
-    }
-
-    clonableStepButton.querySelector('.step-button__text').textContent = (index+1);
-    appendWrapperStepButtons.append(clonableStepButton);
-});
+let currentStepType;
+let errorsCounter;
+let activeStep;
 
 
 function showNextStep() {
-    console.log('переводим на следующий шаг');
-    activeStep = document.querySelector('.step--active');
-    nextStep = activeStep.nextElementSibling;
-    console.log(nextStep);
-    activeStep.classList.remove('step--active');
-    nextStep.classList.add('step--active');
+    if (activeStep.getAttribute('out-to') == 'out') {
+        console.log('надо выйти обратно');
+        activeStep.parentNode.classList.remove('step--active');
+        activeStep.parentNode.nextElementSibling.classList.add('step--active');
+
+    } else {
+        nextStep = activeStep.nextElementSibling;
+        activeStep.classList.remove(currentStepType);
+        nextStep.classList.add(currentStepType);
+    }
 }
 
-//надо проверять поля для активных 
-function checkReqFields() {
-    allReqFields = document.querySelectorAll('.step--active [required]');
+function checkStepPassed() {
+    allReqFields = document.querySelectorAll('.' + currentStepType + ' [required]');
     allReqFields.forEach(reqField => {
         if (reqField.value == '') {
             reqField.classList.add('input--error');
@@ -47,7 +30,7 @@ function checkReqFields() {
     });
 
     errorsCounter = document.querySelectorAll('.step--active .input--error').length;
-    activeStep = document.querySelector('.step--active');
+    activeStep = document.querySelector('.' + currentStepType);
 
     if (errorsCounter == 0) {
         activeStep.setAttribute('step-passed', 'true');
@@ -57,8 +40,24 @@ function checkReqFields() {
     }
 }
 
+function checkCurrentStep() {
+    let currentStep = document.querySelector('.step--active');
+
+
+    if (currentStep.getAttribute('step-type') == 'global') {
+        currentStepType = 'step--active';
+        checkStepPassed();
+    }
+
+    if (currentStep.getAttribute('step-type') == 'branch-parent') {
+        currentStepType = 'substep--active';
+        checkStepPassed();
+    }
+
+}
+
 allStepButtons.forEach(stepButton => {
-    stepButton.addEventListener('click', function () {
-        checkReqFields();
+    stepButton.addEventListener('click', function() {
+        checkCurrentStep();
     });
 });
