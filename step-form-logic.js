@@ -1,12 +1,23 @@
 let allStepButtons = document.querySelectorAll('.buttons--step');
+let manualButton = document.querySelector('#manual-input-button');
 let currentStepType;
 let errorsCounter;
 let activeStep;
 
+function startManual() {
+    currentStepType = 'substep--active';
+    activeStep = document.querySelector('.' + currentStepType);
+    let allShouldBeRequired = document.querySelectorAll('[should-be-required]');
+    allShouldBeRequired.forEach(input => {
+        input.setAttribute('required', '');
+    });
+    activeStep.classList.remove(currentStepType);
+    nextStep = activeStep.nextElementSibling;
+    nextStep.classList.add(currentStepType);
+}
 
 function showNextStep() {
     if (activeStep.getAttribute('out-to') == 'out') {
-        console.log('надо выйти обратно');
         activeStep.parentNode.classList.remove('step--active');
         activeStep.parentNode.nextElementSibling.classList.add('step--active');
 
@@ -60,4 +71,8 @@ allStepButtons.forEach(stepButton => {
     stepButton.addEventListener('click', function() {
         checkCurrentStep();
     });
+});
+
+manualButton.addEventListener('click', function() {
+    startManual();
 });
