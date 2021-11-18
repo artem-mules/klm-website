@@ -1,5 +1,6 @@
 let uploadCareTrigger;
 let uploadButton = document.querySelector('.buttons--uploadcare');
+let uploadSkipButton = document.querySelector('#upload-skip-button');
 let embedChangeCounter = 0;
 let fileNameElement;
 
@@ -7,6 +8,8 @@ function nameChanged() {
     fileNameElement = document.querySelector('.uploadcare--widget__file-name');
     if (fileNameElement != null) {
         uploadButton.textContent = fileNameElement.textContent;
+        uploadSkipButton.classList.remove('buttons--skip-style');
+        uploadSkipButton.textContent = 'Next';
     }
 }
 
