@@ -1,9 +1,14 @@
+let popUp = document.querySelector('.steps-form-popup');
 let allStepButtons = document.querySelectorAll('.buttons--step');
 let manualButton = document.querySelector('#manual-input-button');
 let expectationsInput = document.querySelector('[expectations]');
+let appendWrapperStepButtons = document.querySelector('.steps-wrapper');
+let allSteps = document.querySelectorAll('.step');
 let currentStepType;
 let errorsCounter;
 let activeStep;
+let currentStepNumber;
+let stepIteratorPlus;
 
 function startManual() {
     currentStepType = 'substep--active';
@@ -88,3 +93,72 @@ expectationsInput.addEventListener('input', function() {
         currentSkipButton.textContent = 'Skip';
     }
 });
+
+//формируем кнопочки шагов
+allSteps.forEach(function (elem, index) {
+    let stepWindowIndex = (index + 1);
+
+    let clonableStepButton = document.querySelector('.step-button').cloneNode(true);
+
+    if (index == 0) {
+
+    } else {
+        clonableStepButton.classList.remove('step-button--active');
+        clonableStepButton.classList.remove('step-button--current');
+    }
+
+    clonableStepButton.querySelector('.step-button__text').textContent = (index + 1);
+    appendWrapperStepButtons.append(clonableStepButton);
+});
+
+let allStepNav = document.querySelectorAll('.steps-wrapper .step-button');
+
+
+function checkStepsNav() {
+    allSteps.forEach((step, stepId) => {
+        if (step.classList.contains('step--active')) {
+            currentStepNumber = stepId;
+            
+            allStepNav.forEach((stepNav, stepNavId) => {
+                stepIteratorPlus = stepId;
+                if (stepNavId == stepId) {
+                    stepNav.classList.add('step-button--active');
+                    while (allStepNav[stepIteratorPlus].nextElementSibling != null) {
+                        allStepNav[stepIteratorPlus + 1].classList.remove('step-button--active');
+                        stepIteratorPlus = stepIteratorPlus + 1;
+                        console.log('удалили класс у кругляша');
+                        console.log(allStepNav[stepIteratorPlus]);
+                        console.log(stepIteratorPlus);
+                    }
+                }
+            });
+        }
+    });
+}
+
+allStepNav.forEach((stepNav, stepNavId) => {
+    stepNav.addEventListener('click', function() {
+        allSteps.forEach(step => {
+            step.classList.remove('step--active');
+        });
+        allSteps.forEach((step, stepId) => {
+            if (stepId == stepNavId) {
+                step.classList.add('step--active');
+            }
+        });
+    });
+});
+
+popUp.addEventListener('click', function() {
+    // checkStepsNav();
+    setTimeout(checkStepsNav, 200);
+});
+
+// const targetNodePopUp = popUp;
+// const observerOptionsPopUp = {
+//     childList: true,
+//     attributes: true,
+//     subtree: true
+// }
+// const observerPopUp = new MutationObserver(checkStepsNav);
+// observerPopUp.observe(targetNodePopUp, observerOptionsPopUp);
