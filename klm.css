@@ -89,7 +89,7 @@
 
 .media-filter::-webkit-scrollbar-thumb
 {
-	background-color: #959595;
+	background-color: transparent;
   border-radius: 4px;
 }
 
@@ -833,5 +833,13 @@ a.hand-string__p:hover, a:focus {
 }
 
 .select-filled {
+  color: white !important;
+}
+
+.w--redirected-checked {
+  color: white !important;
+}
+
+.w-checkbox-input.w-checkbox-input--inputType-custom.last-step-checkbox__ico.w--redirected-checked {
   color: white !important;
 }
