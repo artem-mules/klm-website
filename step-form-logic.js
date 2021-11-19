@@ -25,7 +25,6 @@ function startManual() {
 
 function showNextStep() {
     if (activeStep.getAttribute('out-to') == 'out') {
-        console.log('пытаемся выйти из бранч шага');
         activeStep.parentNode.classList.remove('step--active');
         activeStep.parentNode.nextElementSibling.classList.add('step--active');
 
@@ -65,13 +64,11 @@ function checkCurrentStep() {
 
     if (currentStep.getAttribute('step-type') == 'global') {
         currentStepType = 'step--active';
-        console.log('это global');
         checkStepPassed();
     }
 
     if (currentStep.getAttribute('step-type') == 'branch-parent') {
         currentStepType = 'substep--active';
-        console.log('это branch-parent');
         checkStepPassed();
     }
 
@@ -80,7 +77,6 @@ function checkCurrentStep() {
 allStepButtons.forEach(stepButton => {
     stepButton.addEventListener('click', function() {
         checkCurrentStep();
-        console.log('базовый клик по кнопке, ахахх');
     });
 });
 
@@ -168,6 +164,15 @@ allStepNav.forEach((stepNav, stepNavId) => {
 popUp.addEventListener('click', function() {
     // checkStepsNav();
     setTimeout(checkStepsNav, 200);
+
+    let allSelectInputs = document.querySelectorAll('select');
+    allSelectInputs.forEach(select => {
+        if (select.value != '') {
+            select.classList.add('select-filled');
+        } else {
+            select.classList.remove('select-filled');
+        }
+    });
 });
 
 form.addEventListener('submit', function() {
