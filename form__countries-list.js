@@ -4,7 +4,8 @@ let stateTriggerShow = document.querySelector('.o__input-countries-wrapper__1');
 let stateTriggerClose = document.querySelector('.c__input-countries-wrapper__1');
 
 countryListInput.addEventListener('change', function () {
-    if (this.value == 'Germany') {
+    console.log(this.value);
+    if (this.value == 'Deutschland') {
         stateTriggerShow.click();
         statesListInput.setAttribute('required', '');
     } else {
